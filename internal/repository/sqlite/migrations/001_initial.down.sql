@@ -1,0 +1,6 @@
+DROP TABLE IF EXISTS document_tags;
+DROP TABLE IF EXISTS documents;
+DROP TABLE IF EXISTS tags;
+DROP TABLE IF EXISTS document_types;
+DROP TABLE IF EXISTS correspondents;
+DROP TABLE IF EXISTS sync_state;

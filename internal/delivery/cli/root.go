@@ -16,11 +16,16 @@ import (
 
 var jsonFlag bool
 
-func Execute() {
+const logo = `░█▀█░█▀█░█▀█░█▀▀░█▀▄░█▀▀░█░░░▀█▀░█▀█
+░█▀▀░█▀█░█▀▀░█▀▀░█▀▄░█░░░█░░░░█░░█▀▀
+░▀░░░▀░▀░▀░░░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀░░`
+
+func Execute(version string) {
 	rootCmd := &cobra.Command{
-		Use:   "paperclip",
-		Short: "CLI d'exploration Paperless-NGX",
-		Long:  "paperCLIp — explore your Paperless-NGX instance from the terminal or as an LLM agent.",
+		Use:     "paperclip",
+		Short:   "CLI d'exploration Paperless-NGX",
+		Long:    logo + "\n\nExplore your Paperless-NGX instance from the terminal or as an LLM agent.",
+		Version: version,
 		SilenceUsage: true,
 	}
 

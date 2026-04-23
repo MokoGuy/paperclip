@@ -13,10 +13,12 @@ import (
 )
 
 func newInitCmd() *cobra.Command {
-	return &cobra.Command{
+	var noSync bool
+
+	cmd := &cobra.Command{
 		Use:   "init",
-		Short: "Set up paperclip configuration",
-		Long:  "Create the config file with your Paperless-NGX URL and API token.",
+		Short: "Set up paperclip configuration and sync",
+		Long:  "Create the config file with your Paperless-NGX URL and API token, then sync the local cache.",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			configPath, err := configFilePath()
 			if err != nil {
@@ -68,10 +70,29 @@ func newInitCmd() *cobra.Command {
 			}
 
 			fmt.Fprintf(cmd.ErrOrStderr(), "Config saved to %s\n", configPath)
-			fmt.Fprintln(cmd.ErrOrStderr(), "Run 'paperclip sync' to populate the local cache.")
+
+			if noSync {
+				fmt.Fprintln(cmd.ErrOrStderr(), "Run 'paperclip sync' to populate the local cache.")
+				return nil
+			}
+
+			fmt.Fprintln(cmd.ErrOrStderr(), "Syncing local cache...")
+			d, err := loadAllDeps()
+			if err != nil {
+				return err
+			}
+			defer d.db.Close()
+
+			if err := d.syncService.Sync(cmd.Context()); err != nil {
+				return fmt.Errorf("sync failed: %w", err)
+			}
+			fmt.Fprintln(cmd.ErrOrStderr(), "Ready! Try 'paperclip search --recent 5'")
 			return nil
 		},
 	}
+
+	cmd.Flags().BoolVar(&noSync, "no-sync", false, "Skip initial cache sync")
+	return cmd
 }
 
 func configFilePath() (string, error) {

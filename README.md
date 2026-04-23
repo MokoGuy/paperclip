@@ -43,30 +43,13 @@ paperclip init
 # API token: your-api-token-here
 # Testing connection... OK
 # Config saved to ~/.config/paperclip/config.toml
-# Run 'paperclip sync' to populate the local cache.
+# Syncing local cache...
+# Ready! Try 'paperclip search --recent 5'
 ```
+
+One command: config, connection test, and cache sync. Use `--no-sync` to skip the initial sync.
 
 > **Get your API token:** Paperless-NGX web UI → Settings → API tokens, or via `POST /api/token/`.
-
-<details>
-<summary>Manual setup</summary>
-
-```bash
-mkdir -p ~/.config/paperclip
-cat > ~/.config/paperclip/config.toml << 'EOF'
-url = "https://your-paperless-instance.example.com"
-token = "your-api-token-here"
-EOF
-chmod 600 ~/.config/paperclip/config.toml
-```
-
-</details>
-
-Then populate the local cache:
-
-```bash
-paperclip sync
-```
 
 ## Usage
 

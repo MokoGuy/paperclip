@@ -4,6 +4,10 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/MokoGuy/paperclip)](https://goreportcard.com/report/github.com/MokoGuy/paperclip)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
+<p align="center">
+  <img src="docs/assets/hero.png" alt="paperCLIp" width="700">
+</p>
+
 **A fast CLI for exploring your [Paperless-NGX](https://docs.paperless-ngx.com/) instance.** Built for humans in a terminal and LLM agents in a pipeline.
 
 ## Why?

@@ -27,6 +27,7 @@ func Execute() {
 	rootCmd.PersistentFlags().BoolVar(&jsonFlag, "json", false, "Force JSON output")
 
 	rootCmd.AddCommand(
+		newInitCmd(),
 		newTagsCmd(),
 		newTypesCmd(),
 		newCorrespondentsCmd(),

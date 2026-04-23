@@ -37,7 +37,19 @@ go install github.com/MokoGuy/paperclip/cmd/paperclip@latest
 
 ## Setup
 
-Create a config file with your Paperless-NGX URL and API token:
+```bash
+paperclip init
+# Paperless-NGX URL (e.g. https://paperless.example.com): https://your-instance.example.com
+# API token: your-api-token-here
+# Testing connection... OK
+# Config saved to ~/.config/paperclip/config.toml
+# Run 'paperclip sync' to populate the local cache.
+```
+
+> **Get your API token:** Paperless-NGX web UI → Settings → API tokens, or via `POST /api/token/`.
+
+<details>
+<summary>Manual setup</summary>
 
 ```bash
 mkdir -p ~/.config/paperclip
@@ -48,14 +60,12 @@ EOF
 chmod 600 ~/.config/paperclip/config.toml
 ```
 
-> **Get your API token:** Paperless-NGX web UI → Settings → API tokens, or via `POST /api/token/`.
+</details>
 
-Run `paperclip sync` to populate the local cache:
+Then populate the local cache:
 
 ```bash
 paperclip sync
-# Syncing...
-# Sync complete.
 ```
 
 ## Usage
